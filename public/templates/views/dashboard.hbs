@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="favicon/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+	<link rel="stylesheet" href="css/style.css">
+	<title>{{title}}</title>
+</head>
+
+<body>
+	{{>header}}
+
+	<div class="row">
+		<div id="sidebarMenu" class="sidebar-box col-md-3 col-lg-2 d-md-block bg-dark collapse">
+			{{>sidebar}}
+		</div>
+		<div class="main col-md-9 ml-sm-auto col-lg-10 px-md-4 pt-3 bg-light">
+			<h1 class="h2">Dashboard</h1>
+			<hr>
+			<p>
+				Welcome, {{user.name}}
+			</p>
+			<h3>Offered Courses</h3>
+			<table class="table table-bordered">
+				<thead class="thead-dark">
+					<tr>
+						<th scope="col">Course Code</th>
+						<th scope="col">Course Title</th>
+                        <th scope="col">Course Credit</th>
+						<th scope="col">Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					{{#each courses}}
+					<tr>
+						<td>{{this.course_code}}</td>
+						<td>{{this.course_title}}</td>
+                        <td>{{this.course_credit}}</td>
+						<td><form action="/enroll/{{this._id}}" method="POST"><input type="submit" class="btn btn-primary" value="Enroll"></form></td>
+					</tr>
+					{{/each}}
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	{{>scripts}}
+</body>
+
+</html>
